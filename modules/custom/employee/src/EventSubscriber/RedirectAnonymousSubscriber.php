@@ -16,7 +16,6 @@ class RedirectAnonymousSubscriber implements EventSubscriberInterface {
    * {@inheritdoc}
    */
   public static function getSubscribedEvents() {
-    die('here');
     $events[KernelEvents::REQUEST][] = array('onRequest');
     return $events;
   }
@@ -28,7 +27,6 @@ class RedirectAnonymousSubscriber implements EventSubscriberInterface {
    *   The event object.
    */
   public function onRequest(GetResponseEvent $event) {
-    die('h');
     if (\Drupal::currentUser()->isAuthenticated()) {
       $response = new RedirectResponse('/faqs', 302);
       $event->setResponse($response);

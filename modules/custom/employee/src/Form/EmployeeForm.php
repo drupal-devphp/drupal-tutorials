@@ -5,6 +5,7 @@ namespace Drupal\employee\Form;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Database\Database;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Provides a employee form.
@@ -21,7 +22,16 @@ class EmployeeForm extends FormBase {
   /**
    * {@inheritdoc}
    */
-  public function buildForm(array $form, FormStateInterface $form_state) {
+  public function buildForm(array $form, FormStateInterface $form_state){
+    //$query_value = $request->query->get('id');
+    // $query_parameter = \Drupal::request();
+    // $query_value = $query_parameter->get('id');
+    $form['#attached']['library'][] = 'core/drupal.ajax';
+    $form['param_value'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Query parameter value'),
+      '#default_value' => '',
+    ];
 
     $form['emp_firstname'] = [
       '#type' => 'textfield',
@@ -38,7 +48,7 @@ class EmployeeForm extends FormBase {
     ];
 
     $form['emp_email'] = [
-      '#type' => 'email',
+      '#type' => 'textfield',
       '#title' => $this->t('Employee Email'),
       '#required' => TRUE,
       '#maxlength' => 100,
@@ -58,7 +68,12 @@ class EmployeeForm extends FormBase {
     $form['actions']['submit'] = [
       '#type' => 'submit',
       '#value' => $this->t('Save'),
+      '#attributes' => ['class' => 
+        ['btn btn-primary mb-3']
+      ],
     ];
+
+    //$form['#theme'] = 'employee_data_form';
 
     return $form;
   }

@@ -1,0 +1,8 @@
+<div class="message">
+  <h1>{{ heading }}</h1>
+  {% if fact %}
+    {% for key, value in fact %}
+      <p>{{ loop.index }} - {{ value.catFact }}</p>
+    {% endfor %}
+  {% endif%}
+</div>  

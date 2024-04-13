@@ -1,0 +1,4 @@
+services:
+  employee.current_user_name:
+    class: Drupal\employee\Service\CurrentUserName
+    arguments: ['@current_user']

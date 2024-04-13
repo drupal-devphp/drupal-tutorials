@@ -5,3 +5,51 @@ employee.employee:
     _form: 'Drupal\employee\Form\EmployeeForm'
   requirements:
     _permission: 'access content'
+
+employee.ajax:
+  path: '/employee-ajax-data'
+  defaults:
+    _title: 'Employee Ajax Form'
+    _form: 'Drupal\employee\Form\EmployeeAjaxForm'
+  requirements:
+    _permission: 'access content'
+
+employee.batchdemo:
+  path: '/batch-form'
+  defaults:
+    _title: 'Batch Process demo'
+    _form: 'Drupal\employee\Form\BatchForm'
+  requirements:
+    _permission: 'access content'
+
+employee.autocomplete_form:
+  path: '/autocomplete-form'
+  defaults:
+    _title: 'Autocomplete Example'
+    _form: 'Drupal\employee\Form\AutocompleteForm'
+  requirements:
+    _permission: 'access content'
+
+employee.autocomplete:
+  path: '/autocomplete'
+  defaults:
+    _title: 'Autocomplete Controller'
+    _controller: 'Drupal\employee\Controller\AutocompleteController::handleAutocomplete'
+  requirements:
+    _permission: 'access content'
+
+employee.country_dependent:
+  path: '/country-dependent'
+  defaults:
+    _title: 'Country, State, City Dependent Dropdown'
+    _form: 'Drupal\employee\Form\CountryDependent'
+  requirements:
+    _permission: 'access content'
+
+employee.popup:
+  path: '/employee-popup'
+  defaults:
+    _title: 'Employee popup form'
+    _controller: '\Drupal\employee\Controller\MyController::displayFormPopup'
+  requirements:
+    _permission: 'access content'

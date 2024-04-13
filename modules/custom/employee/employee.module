@@ -1,0 +1,22 @@
+<?php
+
+/**
+ * @param $variables
+ */
+ 
+/*
+function employee_preprocess_page(&$variables) {
+  $variables['#attached']['library'][] = 'employee/employee_js_css';
+  $account = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
+  $user = $account->get('name')->value;
+  $variables['#attached']['drupalSettings']['employee']['current_user'] = $user;
+}
+*/
+
+function employee_theme($existing, $type, $theme, $path) {
+  return [
+    'employee_data_form' => [
+      'render elements' => 'form'
+    ]
+  ];
+}

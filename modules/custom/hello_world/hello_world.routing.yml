@@ -38,3 +38,41 @@ hello_world.saveapidata:
     _title: 'Post API'
   requirements:
     _permission: 'access content'
+
+hello_world.getapidata:
+  path: '/get-api-data'
+  defaults:
+    _controller: 'Drupal\hello_world\Controller\APIController::getAPIData'
+    _title: 'Post API'
+  requirements:
+    _permission: 'access content'
+
+hello_world.demodata:
+  path: '/demo-page'
+  defaults:
+    _controller: 'Drupal\hello_world\Controller\HelloWorldController::demoData'
+    _title: 'Demo of pass variables from controller'
+  requirements:
+    _permission: 'access content'
+
+hello_world.getparam:
+  path: '/get-param/{param1}/{param2}'
+  defaults:
+    _controller: 'Drupal\hello_world\Controller\HelloWorldController::getUrlParams'
+    _title: 'Get Params from URL'
+  requirements:
+    _permission: 'access content'
+  options:
+    parameters:
+      param1:
+        type: 'string'
+      param2:
+        type: 'string'
+
+hello_world.geturlparam:
+  path: '/get-url-param'
+  defaults:
+    _controller: 'Drupal\hello_world\Controller\HelloWorldController::getParams'
+    _title: 'Get Params from URL'
+  requirements:
+    _permission: 'access content'

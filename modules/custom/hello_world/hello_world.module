@@ -1,0 +1,166 @@
+<?php
+use Drupal\views\Views;
+use Drupal\views\ViewExecutable;
+use Drupal\taxonomy\Entity\Term;
+use Drupal\Core\Entity\EntityStorageInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\taxonomy\Entity\Vocabulary;
+
+/**
+ * Implements hook_theme().
+ */
+
+function hello_world_theme($existing, $type, $theme, $path) {
+  return [
+    'hello_world_block' => [
+      'variables' => [
+        'heading' => NULL,
+        'fact' => [],
+      ],
+    ],
+    'pass_variable_template' => [
+      'variables' => [
+        'variable1' => NULL,
+        'arr' => [],
+      ],
+    ],
+  ];
+}
+
+function hello_world_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  if ($form_id == 'user_login_form'){
+    $form['#validate'][] = 'hello_world_user_login_form_validate';
+  }
+}
+
+function hello_world_user_login_form_validate(&$form, &$form_state) {
+  $username = $form_state->getValue('name');
+  if(!str_contains($username, 'example.com')) {
+    $form_state->setErrorByName('name', t('This user is not allowed to login'));
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * Implements hook_form_alter().
+ */
+/*function hello_world_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  if ($form_id == 'user_login_form') {
+    $form['name']['#description'] = '';
+    $form['pass']['#description'] = '';
+    $form['#validate'][] = 'hello_world_user_login_form_validate';
+  }
+  
+  if ($form_id == 'employee_employee') {
+    //dump($form);
+    //exit;
+    //$form['actions']['submit']['#submit'][]  = 'hello_world_submit_search_result_request_callback_form';
+    //echo $form_state->getValue('emp_lastname');exit;
+  }
+}
+
+function hello_world_submit_search_result_request_callback_form(&$form, $form_state){
+  echo $lastname 		= $form_state->getValue('emp_lastname') ;
+  exit;
+}
+function hello_world_user_login_form_validate(&$form, &$form_state){
+  $username = $form_state->getValue('name');
+  if (!str_contains($username, 'example.com')) {
+    $form_state->setErrorByName('name', t('This user is not allowed to login'));
+  }
+
+}*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * Implements hook_form_alter().
+ */
+ /*
+function hello_world_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  if ($form_id === 'user_login_form') {
+    $form['#title'] = t('Register with our awesome website!');
+      $form['name']['#placeholder'] = t('abc@gmail.com');
+  $form['pass']['#placeholder'] = t('*****');
+  $form['name']['#title'] = t('Email');
+  }
+}
+*/
+
+/*function hello_world_views_pre_view(ViewExecutable $view, $display_id, array &$args) {
+  if ($view->id() == 'blogs_dummy_view') {
+    $term = \Drupal::entityTypeManager()->getStorage('taxonomy_term')
+      ->loadByProperties(['name' => 'blogs', 'vid' => 6]);
+      var_dump($term);
+
+    $term_id = $term->id();
+
+    $args[0] = $term_id;
+  }
+}*/
+
+/**
+ * Implements hook_preprocess_page().
+ */
+ function hello_world_preprocess_page(&$variables) {
+  $variables['custom_variable'] = '';
+ }
+
+ /**
+  * Implements hook_preprocess_node().
+  */
+ function hello_world_preprocess_node(&$variables) {
+  if ($variables['node']->getType() == 'employee_data') {
+    $variables['custom_variable'] = 'This is custom variables';
+    $variables['#attached']['library'][] = 'evolve/second_library';
+  }
+ }
+
+ /**
+  * Implements hook_preprocess_block().
+  */
+ function hello_world_preprocess_block(&$variables){
+  if ($variables['plugin_id'] == 'system_branding_block') {
+    $variables['custom_variable'] = 'This is custom variable value';
+  }
+ }

@@ -1,0 +1,7 @@
+employee_js_css:
+  version: 1.0
+  css:
+    theme:
+      css/employee.css: {}
+  js:
+    js/employee.js: {}

@@ -21,14 +21,27 @@ use Drupal\hello_world\Controller\APIController;
      */
     public function build() {
       $catFactObj = new APIController;
-      $factData =  $catFactObj->getFact(); 
+      $fetchDataArr = [];
+      for($i=0; $i<5; $i++) {
+        $factData =  $catFactObj->getFact();
+        $fetchDataArr[$i] = [
+          'catFact' => $factData['fact'],
+        ];
+      } 
       return [
-        '#type' => 'markup',
-        '#markup' => $factData['fact'],
-        '#cache' => [
-            'max-age' => 0,
-        ]
+        '#theme' => 'hello_world_block',
+        '#heading' => [
+          '#markup' => 'Cat Facts',
+        ],
+        '#fact' => $fetchDataArr,
       ];  
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getCacheMaxAge() {
+      return 0;
     }
 
  }
